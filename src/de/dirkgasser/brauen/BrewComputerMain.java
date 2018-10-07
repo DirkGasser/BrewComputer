@@ -1,0 +1,85 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package de.dirkgasser.brauen;
+
+import com.pi4j.io.gpio.GpioController;
+import com.pi4j.io.gpio.GpioFactory;
+import java.io.IOException;
+import de.dirkgasser.brauen.BrewComputerFrame;
+import de.dirkgasser.brauen.TestFrame;
+import de.dirkgasser.brauen.RecipeFrame;
+
+
+/**
+ *
+ * @author Dirk
+ */
+public class BrewComputerMain {
+    public static RecipeFrame recipeframe;
+    public static BrewComputerFrame brewframe;
+    public static TestFrame testFrame;
+    public static BrewRecipe brewRecipe;
+    public static GpioController gpio;
+    public static Pump pump; 
+    public static TemperaturSensor temperaturSensor;
+    public static Heater heater;
+    public static Buzzer buzzer;
+    public static Double currentTemp;
+    public static Double deltaTemp;
+    public static boolean isAlive;
+    private static double width;
+    private static double height;
+    
+    
+    public static void main(String args[]) throws IOException {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(BrewComputerFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(BrewComputerFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(BrewComputerFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(BrewComputerFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /* Create and display the form */
+        isAlive = true;
+        gpio = GpioFactory.getInstance();  
+        pump = new Pump(31, 15, 16, gpio);
+        temperaturSensor = new TemperaturSensor();
+        heater = new Heater(29);
+        buzzer = new Buzzer(23, gpio);
+       
+       
+        brewRecipe = TestRecipe.getTestRecipe();
+        testFrame = new TestFrame();
+        recipeframe = new RecipeFrame();
+        brewframe = new BrewComputerFrame();
+        
+        FullScreen.fullScreen(recipeframe, false);
+       
+       Thread thTemp = new Thread(new TemperaturWatcher(temperaturSensor));
+       thTemp.start();
+       java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                recipeframe.setVisible(true);
+            }
+        });
+    }
+}
