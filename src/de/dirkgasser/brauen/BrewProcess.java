@@ -23,12 +23,15 @@ import java.util.HashMap;
 /**
  *
  * @author Dirk Gasser
- * The class control the brew process
- * Each brew step follows the following workflow: 
- *    - WaitStartConditions
- *    - WaitManualStart (If required for the step)
- *    - WaitforTemp
- *    - Processing
+ * @version 1.0
+ * The class control the brew process<br>
+ * Each brew step follows the following workflow: <br>
+ *    - WaitStartConditions<br>
+ *    - WaitManualStart (If required for the step)<br>
+ *    - WaitforTemp<br>
+ *    - Processing<br>
+ * Class is started as runnable and starts itself every second<br>
+ * Because Swing isn't thread save, loop starts instance itself as invokeLater <br>
  */
 public class BrewProcess implements Runnable {
 
@@ -51,6 +54,10 @@ public class BrewProcess implements Runnable {
     double deltaTargetTemp;
     Integer buzzerBeep;
     
+/**
+ * Create instance of brew process 
+ * @param brewRecipe instace of BrewReceipe 
+ */
     public BrewProcess (BrewRecipe brewRecipe) {
         startTime = null;
         waitForAction = null;
@@ -195,26 +202,42 @@ public class BrewProcess implements Runnable {
         }
     }
     
-    
+/**
+ * Stop brew process
+ */
     public void stop() {
         currentState = 5;
     }
+/**
+ * pause brew process
+*/
     public void pause() {
         pauseState = currentState;
         currentState = 6;
         startPause = Instant.now();
     }
-    
+/**
+ * re-start brew process after pause
+*/    
     public void restart() {
         currentState = pauseState;
         stepOffsetSec = stepOffsetSec - Duration.between(startPause, Instant.now()).getSeconds();
     }
+/**
+ * add 1 minute to runtime of brewstep 
+*/   
     public void plus1min() {
         stepOffsetSec = stepOffsetSec + 60;
     }
+/**
+ * substract 1 minute to runtime of brewstep 
+*/  
     public void minus1min() {
         stepOffsetSec = stepOffsetSec - 60;
     }
+/**
+ * jump to previous brew step  
+*/  
     public void stepBack() {
         if (currentStep > 1) {
             synchronized(this) {
@@ -229,6 +252,10 @@ public class BrewProcess implements Runnable {
             }    
         }    
     }
+    
+/**
+ * jump to next brew step  
+*/ 
     public void stepForward() {
         if (currentStep < brewRecipe.getNumberOfSteps()) {
             synchronized(this) {
@@ -243,6 +270,10 @@ public class BrewProcess implements Runnable {
             }    
         }    
     }
+/**
+ * confirm manual action of brew step  
+*/ 
+
     public void confirm() {
         if (currentState.equals(2)) { 
             synchronized(this) {
@@ -255,14 +286,20 @@ public class BrewProcess implements Runnable {
             }
         }
     }
-    
+/**
+* increment target temperature of brew step by 0.1 C   
+*/     
     public void incDeltaTargetTemp(){
         synchronized(this) {
             deltaTargetTemp += 0.1; 
             brewframe.setTempToBe(brewRecipe.getBrewStepbyPosition(currentStep).getTemperatur() + deltaTargetTemp);
         }
     }
-    
+<
+/**
+* decrement target temperature of brew step by 0.1 C   
+*/   
+
     public void decDeltaTargetTemp(){
         synchronized(this) {
             deltaTargetTemp += -0.1;  
