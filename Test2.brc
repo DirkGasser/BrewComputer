@@ -1,0 +1,45 @@
+{
+  "recipeName": "Test2",
+  "brewSteps": [
+    {
+      "description": "neuer Schritt",
+      "ingredients": [
+        {
+          "descripton": "Brauwatter",
+          "amount": 17.0,
+          "unit": "l",
+          "ingredType": "WATER",
+          "property": "NONE",
+          "propertyValue": 0.0
+        }
+      ],
+      "duration": 17,
+      "manual": true,
+      "temperatur": -2147483648
+    },
+    {
+      "description": "neuer Schritt",
+      "ingredients": [
+        {
+          "descripton": "Bömisches Malz",
+          "amount": 200.0,
+          "unit": "g",
+          "ingredType": "MALT",
+          "property": "EBC",
+          "propertyValue": 8.0
+        },
+        {
+          "descripton": "Hamburger Malz",
+          "amount": 1500.0,
+          "unit": "g",
+          "ingredType": "MALT",
+          "property": "EBC",
+          "propertyValue": 20.0
+        }
+      ],
+      "duration": 17,
+      "manual": true,
+      "temperatur": -2147483648
+    }
+  ]
+}
