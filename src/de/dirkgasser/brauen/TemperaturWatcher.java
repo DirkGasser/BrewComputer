@@ -18,8 +18,12 @@ import javax.swing.JTextField;
 import static de.dirkgasser.brauen.BrewComputerMain.testFrame;
 
 /**
- *
- * @author pi
+ * TemperaturWatcher calls every 4 seconds the TemperaturSensor <br>
+ * and write the temperature in the global variable currentTemp <br>
+ * If the test screen is active, the temperatur is shown there <br>
+ * Also the delta temperatur is calculated to stop heater in time <br>
+ * @author Dirk Gasser
+ * @version 1.0
  */
 public class TemperaturWatcher implements Runnable {
     private TemperaturSensor tempSensor;
@@ -29,7 +33,10 @@ public class TemperaturWatcher implements Runnable {
     double[] tempList = new double[30];
     Integer tempListPos;
     
-    
+/**
+ * Instance is started as runnable
+ * @param tempSensor instance of class TemperaturSensor 
+*/   
     public TemperaturWatcher (TemperaturSensor tempSensor) {
         this.tempSensor = tempSensor;
         numberFormat = NumberFormat.getNumberInstance(Locale.GERMAN);

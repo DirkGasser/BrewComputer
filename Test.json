@@ -1,0 +1,45 @@
+{
+  "recipeName": "Test",
+  "brewSteps": [
+    {
+      "description": "Brauwasser",
+      "ingredients": [
+        {
+          "descripton": "Hauptguss",
+          "amount": 17.0,
+          "unit": "l",
+          "ingredType": "WATER",
+          "property": "NONE",
+          "propertyValue": 0.0
+        }
+      ],
+      "duration": 17,
+      "manual": true,
+      "temperatur": -2147483648
+    },
+    {
+      "description": "Malzgabe",
+      "ingredients": [
+        {
+          "descripton": "Pilsner Malz",
+          "amount": 200.0,
+          "unit": "g",
+          "ingredType": "MALT",
+          "property": "EBC",
+          "propertyValue": 8.0
+        },
+        {
+          "descripton": "Münchner Malz",
+          "amount": 1500.0,
+          "unit": "g",
+          "ingredType": "MALT",
+          "property": "EBC",
+          "propertyValue": 20.0
+        }
+      ],
+      "duration": 17,
+      "manual": true,
+      "temperatur": -2147483648
+    }
+  ]
+}
