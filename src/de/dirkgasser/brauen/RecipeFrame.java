@@ -680,7 +680,6 @@ public class RecipeFrame extends javax.swing.JFrame {
         FullScreen.fullScreen(brewframe, false);
         brewframe.setVisible(true);
         brewframe.requestFocus();
-        brewframe.setFocus();
         brewframe.refreshRecipe();
         
     }//GEN-LAST:event_jMenu2MouseClicked
@@ -732,7 +731,6 @@ public class RecipeFrame extends javax.swing.JFrame {
         FullScreen.fullScreen(brewframe, false);
         brewframe.setVisible(true);
         brewframe.requestFocus();
-        brewframe.setFocus();
         brewframe.refreshRecipe();
     }//GEN-LAST:event_jMenu2MousePressed
 

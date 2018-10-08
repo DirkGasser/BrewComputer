@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package de.dirkgasser.brauen;
 
 import com.pi4j.io.gpio.GpioController;
@@ -14,8 +9,11 @@ import de.dirkgasser.brauen.RecipeFrame;
 
 
 /**
- *
- * @author Dirk
+ * Main Class to start brew computer application <br>
+ * Developed for raspberry pi <br>
+ * needs connection from raspberry to brew board <br>
+ * @author Dirk Gasser
+ * @version 1.0
  */
 public class BrewComputerMain {
     public static RecipeFrame recipeframe;

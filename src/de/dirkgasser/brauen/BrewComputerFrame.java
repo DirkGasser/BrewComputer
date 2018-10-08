@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package de.dirkgasser.brauen;
 
 import static de.dirkgasser.brauen.BrewComputerMain.brewRecipe;
@@ -24,8 +19,11 @@ import static javax.swing.JOptionPane.YES_NO_OPTION;
 import javax.swing.JToggleButton;
 
 /**
- *
- * @author Dirk
+ * Swing frame control panel for brew computer <br>
+ * Created with netbeans editor, but 3 step panels are replaced by <br>
+ * dynamic panels <br> 
+ * @author Dirk Gasser
+ * @version 1.0
  */
 public class BrewComputerFrame extends javax.swing.JFrame {
     double width = 480;
@@ -56,6 +54,10 @@ public class BrewComputerFrame extends javax.swing.JFrame {
        jtaRecipeName.setText(brewRecipe.getRecipeName()); 
        
     }
+/**
+ * Instance is created at the start of main class <br>
+ * After receipt is chosen in RecipeFrame it must be updated here <br>
+ */
     public void refreshRecipe() {
        setStepsinFrame(1);
        jtaRecipeName.setText(brewRecipe.getRecipeName());
@@ -723,9 +725,18 @@ public class BrewComputerFrame extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jMenu2MousePressed
 
+/**
+ * Set confirm button for manual action to red (= action required)
+ */
     public void jbConfirmSetRed() {
         jbConfirm.setBackground(Color.RED);
     }
+/**
+ * Shows three brew steps on frame, previous, current and next step <br>
+ * needs global variables brewRecipe which must contain the  <br>
+ * current brew recipe
+ * @param startStep First brew step to be shown on frame
+ */
     public void setStepsinFrame(Integer startStep) {
        if (startStep + 2 > brewRecipe.getNumberOfSteps()) {
            firstStepinFrame = brewRecipe.getNumberOfSteps() - 2;
@@ -768,6 +779,14 @@ public class BrewComputerFrame extends javax.swing.JFrame {
             }    
        pack();
     }
+/**
+ * Set a colored border around a brew step on frame <br>
+ * Used to show the active brew step <br>
+ * needs global variables brewRecipe which must contain the  <br>
+ * current brew recipe
+ * @param step First brew step to be shown on frame
+ * @param color Color ex. Color.green = running, Color.yellow = waiting 
+ */
     
     public void setStepColor(Integer step, Color color){
         jpPrevStep.setBorder(BorderFactory.createEmptyBorder());
@@ -783,6 +802,11 @@ public class BrewComputerFrame extends javax.swing.JFrame {
             jpNextStep.setBorder(BorderFactory.createLineBorder(color, 5));
         }
     }
+    
+/**
+ * Set time which process is running on frame in jtTimeAll<br>
+ * @param timeinSec past time since start in seconds 
+ */
     public void setTimeAll(Integer timeinSec) {
         StringBuilder sbTime = new StringBuilder();
         Integer hours = timeinSec / 3600;
@@ -803,6 +827,10 @@ public class BrewComputerFrame extends javax.swing.JFrame {
         sbTime.append(seconds.toString());
         jtTimeAll.setText(sbTime.toString());
     }
+/**
+ * Set time which process step is running on frame in jtTimeStep<br>
+ * @param timeinSec past time since start of step in seconds 
+ */
     public void setTimeStep(Integer timeinSec) {
         StringBuilder sbTime = new StringBuilder();
         Integer hours = timeinSec / 3600;
@@ -823,18 +851,35 @@ public class BrewComputerFrame extends javax.swing.JFrame {
         sbTime.append(seconds.toString());
         jtTimeStep.setText(sbTime.toString());
     }
+/**
+ * Set target temperatur of brewstep in frame in jtTempToBe<br>
+ * @param temp temperatur in  °C
+ */
     public void setTempToBe(double temp) {
         jtTempToBe.setText(numberFormat.format(temp) + " °C");
     }
+/**
+ * Set current temperatur in frame in jtTempIs<br>
+ * @param temp temperatur in  °C
+ */
     public void setTempIs(double temp) {
         jtTempIs.setText(numberFormat.format(temp) + " °C");
     }
+/**
+ * Set current status in frame in jtStatus<br>
+ * @param status text to be shown  in status field 
+ */
     public void setStatus(String status) {
        jtStatus.setLineWrap(true);
        jtStatus.setWrapStyleWord(true);
        jtStatus.setText(status);
     }
-    
+
+/**
+ * Set status of pump in frame by triggering the action button for pump<br>
+ * So action buttion show the current status 
+ * @param onoff ON or OFF 
+ */
     public void setPump(String onoff) {
         if (onoff.equals("ON")) {
             if (!jtbPump.isSelected()) {
@@ -847,7 +892,12 @@ public class BrewComputerFrame extends javax.swing.JFrame {
             }
         } 
     }
-    
+ 
+/**
+ * Set status of heater in frame by triggering the action button for heater<br>
+ * So action buttion show the current status 
+ * @param onoff ON or OFF 
+ */
     public void setHeater(String onoff) {
         if (onoff.equals("ON")) {
             if (!jtbHeater.isSelected()) {
@@ -860,17 +910,17 @@ public class BrewComputerFrame extends javax.swing.JFrame {
             }    
         } 
     }
-    
+
+/**
+ * Set status of heater in frame by triggering the action button for stop<br>
+ * So action buttion show the current status 
+ */    
     public void setFinished() {
         if (jtbStartStop.isSelected()) {
              jtbStartStop.doClick();
         } 
     }
-    
-    public void setFocus() {
-        jpTimeLine.requestFocus();
-        jtbStartStop.getModel().setPressed(true);
-    }
+
     
     private Integer firstStepinFrame;
     private NumberFormat numberFormat;
