@@ -15,6 +15,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
+
  * Brew recipe for beer <br>
  * A BrewRecipe contains a list of BrewSteps <br>
  * A BrewStep contains information about the step and a list of Ingredient <br>
@@ -75,6 +76,7 @@ public class BrewRecipe {
  * @param recipeName name of receipe, also file name 
  * @return getBrewRecipeFromFile Instance of BrewReceipe 
  */  
+
     public static BrewRecipe getBrewRecipeFromFile (String recipeName) {
         try {
             File recFile = new File(System.getProperty("user.home") + File.separator + recipeName + ".brc");
@@ -113,11 +115,13 @@ public class BrewRecipe {
         }
         return null; 
     }
+
 /**
  * remove a BrewStep from BrewReceipe <br>
  * @param position sequence number of BrewStep  
  * @return deleteBrewStep true = successful 
  */  
+
     public Boolean deleteBrewStep(Integer position) {
         BrewStep tobedeletedStep = this.getBrewStepbyPosition(position);
         if (tobedeletedStep.hasIngredients()) {
@@ -129,11 +133,13 @@ public class BrewRecipe {
             return true;
         }
     }
+
 /**
  * get all Ingredient of BrewReceipe (from all BrewSteps) <br>
  * formatted as string for each ingredient and ordered by type of ingredient
  * @return AllIngredients List of Ingredient
  */      
+
     public List<String> AllIngredients () {
         List<String> ingreds = new ArrayList<>();
         StringBuilder oneIngred = new StringBuilder(); 
@@ -164,10 +170,12 @@ public class BrewRecipe {
         }
         return ingreds;
     }
+
 /**
  * get all Ingredient of BrewReceipe (from all BrewSteps)
  * @return AllIngredients List of Ingredient
  */      
+
     public List<Ingredient> getIngredients () {
         List<Ingredient> ingreds = new ArrayList<>();
         for (BrewStep brewStep : brewSteps) {
@@ -181,12 +189,14 @@ public class BrewRecipe {
         }
         return ingreds;
     }
+
 /**
  * get BrewStep of an Ingredient based on list position<br>
  * If a ingredient is changed it must be done a traceback to the brew step
  * @return getIngredBrewstep BrewStep of ingredient 
  * @param listPosition position of ingredient in list of method getIngredients
  */      
+
     public Integer getIngredBrewstep (Integer listPosition) {
         Integer bcounter = 0;
         Integer icounter = 0;
@@ -204,11 +214,13 @@ public class BrewRecipe {
         }
         return 0;
     }
+
 /**
  * get Ingredient based on list position
  * @return getIngredbyPosition Ingredient 
  * @param listPosition position of ingredient in list of method getIngredients
  */         
+
     public Ingredient getIngredbyPosition (Integer listPosition) {
         Integer bcounter = 0;
         Integer icounter = 0;
@@ -225,11 +237,13 @@ public class BrewRecipe {
         }
         return null;
     }
+
 /**
  * add a new BrewStep to receipe 
  * @param brewStep instance of BrewStep
  * @param position position after which the step is inserted in the receipe
  */          
+
     public void addBrewStep (BrewStep brewStep, Integer position) {
         if (brewSteps.size() > position) {
             brewSteps.add(position, brewStep);
@@ -242,6 +256,7 @@ public class BrewRecipe {
  * @param position number of source BrewStep
  * @param brewStepNo number of target BrewStep
  */        
+
     public void transferIngred (Integer position, Integer brewStepNo) {
         Ingredient tobemovedIngred = null;
         Integer bcounter = 0;
@@ -260,9 +275,11 @@ public class BrewRecipe {
         }
         brewSteps.get(brewStepNo).addIngredient(tobemovedIngred);
     }
+
 /**
  * Write BrewReceipe to file in json format
  */       
+
     public void writeBrewRecipe () {
        Gson gson = new GsonBuilder().setPrettyPrinting().create();
        Writer writer;

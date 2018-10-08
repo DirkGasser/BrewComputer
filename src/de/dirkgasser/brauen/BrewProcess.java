@@ -210,7 +210,7 @@ public class BrewProcess implements Runnable {
     }
 /**
  * pause brew process
- */
+*/
     public void pause() {
         pauseState = currentState;
         currentState = 6;
@@ -218,7 +218,7 @@ public class BrewProcess implements Runnable {
     }
 /**
  * re-start brew process after pause
- */    
+*/    
     public void restart() {
         currentState = pauseState;
         stepOffsetSec = stepOffsetSec - Duration.between(startPause, Instant.now()).getSeconds();
@@ -273,6 +273,7 @@ public class BrewProcess implements Runnable {
 /**
  * confirm manual action of brew step  
 */ 
+
     public void confirm() {
         if (currentState.equals(2)) { 
             synchronized(this) {
@@ -285,7 +286,6 @@ public class BrewProcess implements Runnable {
             }
         }
     }
-
 /**
 * increment target temperature of brew step by 0.1 C   
 */     
@@ -295,9 +295,11 @@ public class BrewProcess implements Runnable {
             brewframe.setTempToBe(brewRecipe.getBrewStepbyPosition(currentStep).getTemperatur() + deltaTargetTemp);
         }
     }
+<
 /**
 * decrement target temperature of brew step by 0.1 C   
 */   
+
     public void decDeltaTargetTemp(){
         synchronized(this) {
             deltaTargetTemp += -0.1;  

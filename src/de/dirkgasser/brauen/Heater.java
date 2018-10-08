@@ -65,6 +65,7 @@ public class Heater {
  * get status of  heater 
  * @return isOn true if heater is on 
 */   
+
     public boolean isOn() {
         return pinoutd.getState().isHigh();
     }
