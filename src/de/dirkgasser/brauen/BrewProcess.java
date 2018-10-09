@@ -295,7 +295,6 @@ public class BrewProcess implements Runnable {
             brewframe.setTempToBe(brewRecipe.getBrewStepbyPosition(currentStep).getTemperatur() + deltaTargetTemp);
         }
     }
-<
 /**
 * decrement target temperature of brew step by 0.1 C   
 */   
