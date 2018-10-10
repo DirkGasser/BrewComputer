@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package de.dirkgasser.brauen;
 
 import com.pi4j.io.gpio.GpioController;
@@ -39,7 +34,7 @@ public class Heater {
     }
 /**
  * @param pin GPIO number, column "wPI" of "GPIO readall" command
- * @param gpio - GpioFactory instance  
+ * @param gpio GpioFactory instance  
 */   
     public Heater (int pin, GpioController gpio) {
         this.pin = pin;

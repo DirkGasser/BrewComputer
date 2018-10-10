@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package de.dirkgasser.brauen;
 
 import static de.dirkgasser.brauen.BrewComputerMain.recipeframe;
@@ -18,8 +13,11 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 /**
- *
- * @author Dirk
+ * Combined Listener Class for ReceipeFrame, part BrewSteps <br>
+ * The class implements ItemListner for text fields and <br>
+ * ActionListiner for buttons <br>
+ * @author Dirk Gasser
+ * @version 1.0
  */
 public class BrewStepKeyListner extends java.awt.event.KeyAdapter
                                 implements ItemListener, ActionListener {
@@ -34,19 +32,39 @@ public class BrewStepKeyListner extends java.awt.event.KeyAdapter
     private String newdelete;
     private String attribute;
     private BrewRecipe brewRecipe;
-                            
+/**
+ * Creator for TextFields 
+ * @param field JTextField which is observed
+ * @param step BrewStep of BrewRecipe to which this field belongs 
+ * @param attribute name of attribute of BrewStep, will be updated if field is changed 
+ * @param brewRecipe BrewRecipe to which BrewStep belongs 
+ */                           
     public BrewStepKeyListner (JTextField field, Integer step, String attribute,  BrewRecipe brewRecipe) {
         this.field = field;
         this.step = step;
         this.brewRecipe = brewRecipe;
         this.attribute = attribute;
     }
+/**
+ * Creator for JComboBox
+ * @param field JComboBox which is observed
+ * @param step BrewStep of BrewRecipe to which this field belongs 
+ * @param attribute name of attribute of BrewStep, will be updated if field is changed
+ * @param brewRecipe BrewRecipe to which BrewStep belongs 
+ */
     public BrewStepKeyListner (JComboBox field, Integer step, String attribute, BrewRecipe brewRecipe) {
         this.comboBox = field;
         this.step = step;
         this.brewRecipe = brewRecipe;
         this.attribute = attribute;
     }
+/**
+ * Creator for Button
+ * @param button Button which is observed
+ * @param step BrewStep of BrewRecipe to which this field belongs 
+ * @param attribute name of attribute of BrewStep, will be updated if field is changed
+ * @param brewRecipe BrewRecipe to which BrewStep belongs 
+ */
     public BrewStepKeyListner (Button button, Integer step, String attribute, BrewRecipe brewRecipe) {
         this.button = button;
         this.step = step;
@@ -55,6 +73,12 @@ public class BrewStepKeyListner extends java.awt.event.KeyAdapter
     }
     
     //keyReleased is used for all JText fields
+/**
+ * KeyReleased is automated called when instance of class is injected <br>
+ * At this point the instance of this class knows which field is changed <br>
+ * because it is given to this instance when the instance is create
+ * @param evt 
+ */
     public void keyReleased(java.awt.event.KeyEvent evt) {
                if (attribute.equals("Duration")) {
                    try {
