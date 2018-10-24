@@ -77,7 +77,7 @@ public class BrewStepKeyListner extends java.awt.event.KeyAdapter
  * KeyReleased is automated called when instance of class is injected <br>
  * At this point the instance of this class knows which field is changed <br>
  * because it is given to this instance when the instance is create
- * @param evt 
+ * @param evt not used
  */
     public void keyReleased(java.awt.event.KeyEvent evt) {
                if (attribute.equals("Duration")) {

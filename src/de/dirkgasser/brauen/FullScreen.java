@@ -13,7 +13,7 @@ import java.awt.event.FocusListener;
 import javax.swing.JFrame;
 
 /**
- * claas offer a static function to set a JFrame to a full screen 
+ * class offer a static function to set a JFrame to a full screen 
  * @author Dirk Gasser
  * @version 1.0
  */
