@@ -19,10 +19,11 @@ import static javax.swing.JOptionPane.YES_NO_OPTION;
 import javax.swing.JToggleButton;
 
 /**
-
  * Swing frame control panel for brew computer <br>
- * Created with netbeans editor, but 3 step panels are replaced by <br>
- * dynamic panels <br> 
+ * Designed with NetBeans editor, therefor some components are placeholder <br>
+ * Panel jpPrevStep: Replaced by JPBrewStep <br>
+ * Panel jpCurrentStep: Replaced by JPBrewStep <br>
+ * Panel jpNextStep: Replaced by JPBrewStep <br>
  * @author Dirk Gasser
  * @version 1.0
 

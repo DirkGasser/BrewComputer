@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package de.dirkgasser.brauen;
 
 import static de.dirkgasser.brauen.BrewComputerMain.brewRecipe;
@@ -11,11 +6,19 @@ import javax.swing.GroupLayout;
 import javax.swing.JButton;
 
 /**
- *
- * @author Dirk
+ * JPanel to show all brew Recipes in  RecipeFrame <br>
+ * All recipes are read from file system and shown as button <br>
+ * If a new recipe is added this panel is destroyed and created again <br>
+ * Therfor the initial create when the application is started invoke to show the first recipe
+ * @author Dirk Gasser
+ * @version 1.0
  */
 public class JPRecipeNames extends javax.swing.JPanel {
     private RecipeNames recipeNames;
+/**
+ * Create JPanel with a button for all brew recipes in the file system
+ * @param firstRecipe True = first recipe of the file system is shown in RecipeFrame
+ */
     public JPRecipeNames (Boolean firstRecipe) {
         Integer step = 1;
         Integer high;

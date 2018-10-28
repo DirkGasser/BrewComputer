@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package de.dirkgasser.brauen;
 
 import javax.swing.JPanel;
@@ -13,8 +8,10 @@ import javax.swing.JScrollPane;
 import javax.swing.GroupLayout;
 
 /**
- *
- * @author pi
+ * JPanel for one BrewStep in BrewComputerFrame <br>
+ * Shows all parameters and ingredient of a BrewStep <br>
+ * @author Dirk Gasser
+ * @version 1.0
  */
 public class JPBrewStep extends JPanel {
     JTextField jtStepName;
@@ -22,7 +19,10 @@ public class JPBrewStep extends JPanel {
     JTextPane jtpIngredients;
     JLabel jlDuration;
     JScrollPane jScrollPane1;
-      
+/**
+ * Create a Panel for a BrewStep
+ * @param brewStep BrewStep which is shown in the Jpanel
+ */      
     public JPBrewStep (BrewStep brewStep) {
         jtStepName = new javax.swing.JTextField();
         jtDuration = new javax.swing.JTextField();

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package de.dirkgasser.brauen;
 
 import java.awt.Button;
@@ -14,12 +9,18 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 /**
- *
- * @author Dirk
+ * JPanel which shows all BrewSteps of a BrewRecipe in the RecipeFrame <br>
+ * BrewStepKeyListner is used to store any change in the BrewRecipe <br>
+ * jpBrewProcess panel of RecipeFrame is replaced by this Panel 
+ * @author Dirk Gasser
+ * @version 1.0
  */
 public class JPRecipeProcess extends javax.swing.JPanel {
    
-    
+/**
+ * Create a JPanel with all BrewSteps for edit
+ * @param brewRecipe BrewRecipe which includes BrewSteps to be shown here 
+ */   
     public JPRecipeProcess (BrewRecipe brewRecipe) {
         Integer step = 1;
         Integer high;
@@ -133,9 +134,5 @@ public class JPRecipeProcess extends javax.swing.JPanel {
         jpBrewProcessLayout.setVerticalGroup(
             jpBrewProcessLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(sequentialGroupVert.addContainerGap(98, Short.MAX_VALUE)));
-    }
-    
-    private void bDeletebsActionPerformed(java.awt.event.ActionEvent evt) {                                           
-        // TODO add your handling code here:
     }   
 }
