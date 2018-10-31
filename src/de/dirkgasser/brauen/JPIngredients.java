@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package de.dirkgasser.brauen;
 
 import javax.swing.GroupLayout;
@@ -12,11 +7,18 @@ import javax.swing.JTextField;
 import javax.swing.LayoutStyle;
 
 /**
- *
- * @author Dirk
+ * Panel to shown all ingredients in the RecipeFrame <br>
+ * IngredientKeyListner is used to store any change in the BrewRecipe <br>
+ * jpIngredients panel of RecipeFrame is replaced by this Panel 
+ * @author Dirk Gasser
+ * @version 1.0
  */
 public class JPIngredients extends javax.swing.JPanel {
-    
+
+/**
+ * Create a JPanel with all ingredients for edit
+ * @param brewRecipe BrewRecipe which includes all ingredients to be shown
+ */    
     public JPIngredients (BrewRecipe brewRecipe) {
         Integer step = 1;
         Integer high;

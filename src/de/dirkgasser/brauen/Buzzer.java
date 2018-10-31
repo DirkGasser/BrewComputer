@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package de.dirkgasser.brauen;
 
 import com.pi4j.io.gpio.GpioController;
@@ -29,7 +24,8 @@ public class Buzzer {
     private int pin;
  
 /**
- * @param pin - GPIO number, column "wPI" of "GPIO readall" command
+ * creator with ony PIN
+ * @param pin GPIO number, column "wPI" of "GPIO readall" command
 */   
     public Buzzer (int pin) {
         this.pin = pin;
@@ -38,8 +34,9 @@ public class Buzzer {
         pinoutd.setShutdownOptions(true, PinState.LOW, PinPullResistance.OFF); 
     }
 /**
- * @param pin - GPIO number, column "wPI" of "GPIO readall" command
- * @param gpio - GpioFactory instance 
+ * Creator which PIN and GpioFactory
+ * @param pin GPIO number, column "wPI" of "GPIO readall" command
+ * @param gpio GpioFactory instance 
 */
     public Buzzer (int pin, GpioController gpio) {
 
@@ -48,7 +45,9 @@ public class Buzzer {
         pinoutd = gpio.provisionDigitalOutputPin(RaspiPin.getPinByAddress(pin));
         pinoutd.setShutdownOptions(true, PinState.LOW, PinPullResistance.OFF); 
     }
-    
+/**
+ * let the buzzer beep
+ */
     public void beep() {
         Thread t = new Thread() {
             public void run() {

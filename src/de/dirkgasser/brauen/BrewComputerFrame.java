@@ -19,10 +19,11 @@ import static javax.swing.JOptionPane.YES_NO_OPTION;
 import javax.swing.JToggleButton;
 
 /**
-
  * Swing frame control panel for brew computer <br>
- * Created with netbeans editor, but 3 step panels are replaced by <br>
- * dynamic panels <br> 
+ * Designed with NetBeans editor, therefor some components are placeholder <br>
+ * Panel jpPrevStep: Replaced by JPBrewStep <br>
+ * Panel jpCurrentStep: Replaced by JPBrewStep <br>
+ * Panel jpNextStep: Replaced by JPBrewStep <br>
  * @author Dirk Gasser
  * @version 1.0
 
@@ -742,9 +743,6 @@ public class BrewComputerFrame extends javax.swing.JFrame {
  * current brew recipe
  * @param startStep First brew step to be shown on frame
  */
-    public void jbConfirmSetRed() {
-        jbConfirm.setBackground(Color.RED);
-    }
     public void setStepsinFrame(Integer startStep) {
        if (startStep + 2 > brewRecipe.getNumberOfSteps()) {
            firstStepinFrame = brewRecipe.getNumberOfSteps() - 2;
@@ -879,18 +877,6 @@ public class BrewComputerFrame extends javax.swing.JFrame {
     public void setTempIs(double temp) {
         jtTempIs.setText(numberFormat.format(temp) + " °C");
     }
-/**
- * Set current status in frame in jtStatus<br>
- * @param status text to be shown  in status field 
- */
-
-    public void setTempToBe(double temp) {
-        jtTempToBe.setText(numberFormat.format(temp) + " °C");
-    }
-    public void setTempIs(double temp) {
-        jtTempIs.setText(numberFormat.format(temp) + " °C");
-    }
-
     public void setStatus(String status) {
        jtStatus.setLineWrap(true);
        jtStatus.setWrapStyleWord(true);

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package de.dirkgasser.brauen;
 
 import static de.dirkgasser.brauen.BrewComputerMain.brewRecipe;
@@ -13,8 +8,13 @@ import java.awt.Toolkit;
 import javax.swing.JMenu;
 
 /**
- *
- * @author Dirk
+ * JFrame for editing and selection a brew recipe <br>
+ * Designed with NetBeans editor, therefor some components are placeholder <br>
+ * Panel jpRecipeNames: Replaced by JPRecipeNames <br>
+ * Panel jpBrewProcess: Replaced by JPRecipeProcess <br>
+ * Panel jpIngredients: Replaced by JPIngredients
+ * @author Dirk Gasser
+ * @version 1.0
  */
 public class RecipeFrame extends javax.swing.JFrame {
     double width = 800;
@@ -24,9 +24,10 @@ public class RecipeFrame extends javax.swing.JFrame {
     private javax.swing.JTextField jtSchritt1;
     private javax.swing.JTextField jtBezeichung2;
     private javax.swing.JTextField jtSchritt2;
-    /**
-     * Creates new form RecipeFrame
-     */
+/**
+* Creates new form RecipeFrame <br>
+* All information is taken from global variables <br>
+*/
     public RecipeFrame() {
 /*
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -56,6 +57,9 @@ public class RecipeFrame extends javax.swing.JFrame {
        
     }
     
+/**
+ * Read actual BrewRecipe from global variable an shwon in frame
+ */
     public void readRecipe() {
        jtRecipeName.setText(brewRecipe.getRecipeName());
        

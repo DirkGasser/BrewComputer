@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package de.dirkgasser.brauen;
 
 import static de.dirkgasser.brauen.BrewComputerMain.recipeframe;
@@ -16,8 +11,10 @@ import javax.swing.JComboBox;
 import javax.swing.JTextField;
 
 /**
- *
- * @author Dirk
+ * Listener Class which update immediately the ingredient of the brew recipe <br>
+ * when field in screen is changed
+ * @author Dirk Gasser
+ * @version 1.0
  */
 public class IngredientKeyListner extends java.awt.event.KeyAdapter 
                                   implements ItemListener, ActionListener {
@@ -29,26 +26,49 @@ public class IngredientKeyListner extends java.awt.event.KeyAdapter
     private Double doubValue;
     private BrewRecipe brewRecipe;
     private JButton button;
-    
+/**
+ * Create Listner for JTextField
+ * @param field JTextField which is observed 
+ * @param listPosition Position of the observed ingredient in the brew recipe
+ * @param attribute Name of the Ingredients attribute to be updated 
+ * @param brewRecipe BrewRecipe which includes the observed ingredient 
+ */    
     public IngredientKeyListner (JTextField field, Integer listPosition, String attribute, BrewRecipe brewRecipe) {
         this.field = field;
         this.listPosition = listPosition;
         this.attribute = attribute;
         this.brewRecipe = brewRecipe;
     }
+/**
+ * Create Listner of JComboBox
+ * @param comboBox JComboBox which is observed 
+ * @param listPosition Position of the observed ingredient in the brew recipe
+ * @param attribute Name of the Ingredients attribute to be updated
+ * @param brewRecipe BrewRecipe which includes the observed ingredient
+ */
     public IngredientKeyListner (JComboBox comboBox, Integer listPosition, String attribute, BrewRecipe brewRecipe) {
         this.comboBox = comboBox;
         this.listPosition = listPosition;
         this.attribute = attribute;
         this.brewRecipe = brewRecipe;
     }
+/**
+ * Create Listner of JButton
+ * @param button JButton which is observed
+ * @param listPosition Position of the observed ingredient in the brew recipe
+ * @param attribute Name of the Ingredients attribute to be updated
+ * @param brewRecipe BrewRecipe which includes the observed ingredient
+ */
     public IngredientKeyListner (JButton button, Integer listPosition, String attribute, BrewRecipe brewRecipe) {
         this.button = button;
         this.listPosition = listPosition;
         this.attribute = attribute;
         this.brewRecipe = brewRecipe;
     }
-    
+/**
+ * Take new value from screen field and store in into ingredient of brew recipe
+ * @param evt not used all information is taken from class instance given from constructor
+ */   
     public void keyReleased(java.awt.event.KeyEvent evt) {      
         if (attribute.equals("Description")) {
             brewRecipe.getIngredbyPosition(listPosition).setDescription(field.getText());
@@ -88,7 +108,10 @@ public class IngredientKeyListner extends java.awt.event.KeyAdapter
             brewRecipe.transferIngred(listPosition, comboBox.getSelectedIndex());
         }
     }
-
+/**
+ * Take new value from screen drop list and store in into ingredient of brew recipe
+ * @param ie not used all information is taken from class instance given from constructor
+ */
     @Override
     public void itemStateChanged(ItemEvent ie) {
         if (ie.getStateChange() == ItemEvent.SELECTED) {
@@ -125,7 +148,10 @@ public class IngredientKeyListner extends java.awt.event.KeyAdapter
             
         }
     }
-
+/**
+ * Take new value from screen button and store in into ingredient of brew recipe
+ * @param ae not used all information is taken from class instance given from constructor
+ */
     @Override
     public void actionPerformed(ActionEvent ae) {
        if (attribute.equals("New")) {
