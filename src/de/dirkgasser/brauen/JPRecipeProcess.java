@@ -7,6 +7,7 @@ import javax.swing.GroupLayout.SequentialGroup;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+import javax.swing.LayoutStyle;
 
 /**
  * JPanel which shows all BrewSteps of a BrewRecipe in the RecipeFrame <br>
@@ -30,11 +31,11 @@ public class JPRecipeProcess extends javax.swing.JPanel {
         JTextField[] jtTemperatur = new JTextField[50];
         JComboBox[] jcbStart = new JComboBox[50];
         Button[] bDeletebs = new Button[50];
-        Button[] bNewStep = new Button[50];;
-        JLabel[] lbCelsius = new JLabel[50];;
-        JLabel[] lbMin = new JLabel[50];;
+        Button[] bNewStep = new Button[50];
+        JLabel[] lbCelsius = new JLabel[50];
+        JLabel[] lbMin = new JLabel[50];
         
-        high = 15 + 35 * brewRecipe.getbrewSteps().size();
+        high = 15 + 40 * brewRecipe.getbrewSteps().size();
         this.setMinimumSize(new java.awt.Dimension(100, 190));
         this.setPreferredSize(new java.awt.Dimension(600, high));
         this.setFont(new java.awt.Font("Dialog", 1, 12));
@@ -47,6 +48,7 @@ public class JPRecipeProcess extends javax.swing.JPanel {
         for (BrewStep brewStep : brewRecipe.getbrewSteps()) {
             jtBezeichnung[step] = new JTextField();  
             jtBezeichnung[step].addKeyListener(new BrewStepKeyListner(jtBezeichnung[step], step, "Description", brewRecipe));
+            jtBezeichnung[step].setPreferredSize(new java.awt.Dimension(80, 30));
             jtDauer[step] = new JTextField();
             jtDauer[step].addKeyListener(new BrewStepKeyListner(jtDauer[step], step, "Duration", brewRecipe));
             jtSchritt[step] = new JTextField();
@@ -81,19 +83,18 @@ public class JPRecipeProcess extends javax.swing.JPanel {
                     
             parallelGroup.addGroup(jpBrewProcessLayout.createSequentialGroup()
                         .addComponent(jtSchritt[step], GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
-                        .addGap(8, 8, 10)
+                        .addGap(7, 7, 10)
                         .addComponent(jtBezeichnung[step], GroupLayout.PREFERRED_SIZE, 145, GroupLayout.PREFERRED_SIZE)
-                        .addGap(8, 8, 10)
+                        .addGap(7, 7, 10)
                         .addComponent(jcbStart[step], GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                         .addGap(8, 8, 10)
+                         .addGap(7, 7, 10)
                         .addComponent(jtDauer[step], GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lbMin[step])
-                         .addGap(8, 8, 10)
+                         .addGap(7, 7, 10)
                         .addComponent(jtTemperatur[step], GroupLayout.PREFERRED_SIZE, 56, GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lbCelsius[step])
-                         .addGap(8, 8, 10)
+                         .addGap(7, 7, 10)
                         .addComponent(bDeletebs[step], GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(bNewStep[step], GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE));
@@ -105,6 +106,7 @@ public class JPRecipeProcess extends javax.swing.JPanel {
         sequentialGroup.addContainerGap();
         sequentialGroup.addGroup(parallelGroup);
         sequentialGroup.addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE);
+        sequentialGroup.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 50  , 200);
         
         jpBrewProcessLayout.setHorizontalGroup(
             jpBrewProcessLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
