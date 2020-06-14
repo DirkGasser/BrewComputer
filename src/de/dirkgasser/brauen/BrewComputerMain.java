@@ -64,8 +64,8 @@ public class BrewComputerMain {
         gpio = GpioFactory.getInstance();  
         pump = new Pump(31, 15, 16, gpio);
         temperaturSensor = new TemperaturSensor();
-        heater = new Heater(29);
-        buzzer = new Buzzer(23, gpio);
+        heater = new Heater(23);  // original layout 29
+        buzzer = new Buzzer(29, gpio); // origional layout 23
        
        
         brewRecipe = TestRecipe.getTestRecipe();
