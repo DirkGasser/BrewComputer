@@ -96,7 +96,6 @@ public class BrewComputerFrame extends javax.swing.JFrame {
         jtbStartStop = new javax.swing.JToggleButton();
         jtbPump = new javax.swing.JToggleButton();
         jtbHeater = new javax.swing.JToggleButton();
-        jtbPumpBack = new javax.swing.JToggleButton();
         jbConfirm = new javax.swing.JButton();
         jbPMinus = new javax.swing.JButton();
         jbPPlus = new javax.swing.JButton();
@@ -272,14 +271,6 @@ public class BrewComputerFrame extends javax.swing.JFrame {
             }
         });
 
-        jtbPumpBack.setText("<html>Pumpe <br>zurück</html>");
-        jtbPumpBack.setActionCommand("Pumpe");
-        jtbPumpBack.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtbPumpBackActionPerformed(evt);
-            }
-        });
-
         jbConfirm.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jbConfirm.setText("Manuell");
         jbConfirm.addActionListener(new java.awt.event.ActionListener() {
@@ -311,7 +302,6 @@ public class BrewComputerFrame extends javax.swing.JFrame {
                 .addGroup(jpControlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jbConfirm, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
                     .addComponent(jtbPump)
-                    .addComponent(jtbPumpBack)
                     .addComponent(jtbHeater, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jtbStartStop, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jpControlLayout.createSequentialGroup()
@@ -322,19 +312,17 @@ public class BrewComputerFrame extends javax.swing.JFrame {
         jpControlLayout.setVerticalGroup(
             jpControlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpControlLayout.createSequentialGroup()
-                .addComponent(jtbStartStop, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jtbPump, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jpControlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jbPMinus, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE)
-                    .addComponent(jbPPlus, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jtbPumpBack, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jtbStartStop, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(12, 12, 12)
-                .addComponent(jtbHeater, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jtbPump, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(12, 12, 12)
+                .addGroup(jpControlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jbPMinus, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jbPPlus, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jbConfirm, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jtbHeater, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(12, 12, 12)
+                .addComponent(jbConfirm, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -592,11 +580,7 @@ public class BrewComputerFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         if(((JToggleButton) evt.getSource()).isSelected()) {
             ((JToggleButton) evt.getSource()).setText("<html>" + pump.getRate() + "%<br> Pumpe aus</html>");
-            if (jtbPumpBack.isSelected()) {
-                pump.setBackward();
-            } else {
                 pump.setOn();
-            }
         } else {
             ((JToggleButton) evt.getSource()).setText("<html>Pumpe ein</html>");
             pump.setOff();
@@ -677,25 +661,6 @@ public class BrewComputerFrame extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jbPPlusActionPerformed
 
-    private void jtbPumpBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtbPumpBackActionPerformed
-        // TODO add your handling code here:
-        if(((JToggleButton) evt.getSource()).isSelected()) {
-            ((JToggleButton) evt.getSource()).setText("vorwärts");
-            if (brewProcess != null) {
-                pump.setBackward();
-            }
-        } else {
-            ((JToggleButton) evt.getSource()).setText("<html>Pumpe <br>zurück</html>");
-            if (brewProcess != null) {
-                if (jtbPump.isSelected()) {
-                    pump.setOn();
-                } else {
-                    pump.setOff();
-                }
-            }
-        }
-    }//GEN-LAST:event_jtbPumpBackActionPerformed
-
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         brewProcess.decDeltaTargetTemp();
@@ -713,7 +678,7 @@ public class BrewComputerFrame extends javax.swing.JFrame {
             heater.setOff();
             testFrame.dispose();
             recipeframe.dispose();
-            isAlive = false;
+            isAlive.getAndSet(false);
             this.dispose();
         }
     }//GEN-LAST:event_jMenu2MouseClicked
@@ -725,7 +690,7 @@ public class BrewComputerFrame extends javax.swing.JFrame {
             heater.setOff();
             testFrame.dispose();
             recipeframe.dispose();
-            isAlive = false;
+            isAlive.getAndSet(false);
             this.dispose();
         }
     }//GEN-LAST:event_jMenu2MousePressed
@@ -983,7 +948,6 @@ public class BrewComputerFrame extends javax.swing.JFrame {
     private javax.swing.JToggleButton jtbHeater;
     private javax.swing.JToggleButton jtbPause;
     private javax.swing.JToggleButton jtbPump;
-    private javax.swing.JToggleButton jtbPumpBack;
     private javax.swing.JToggleButton jtbStartStop;
     private javax.swing.JTextPane jtpIngredients;
     // End of variables declaration//GEN-END:variables

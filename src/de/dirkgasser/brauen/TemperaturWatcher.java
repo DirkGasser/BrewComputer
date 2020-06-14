@@ -4,6 +4,7 @@ import static de.dirkgasser.brauen.BrewComputerMain.brewframe;
 import static de.dirkgasser.brauen.BrewComputerMain.currentTemp;
 import static de.dirkgasser.brauen.BrewComputerMain.deltaTemp;
 import static de.dirkgasser.brauen.BrewComputerMain.isAlive;
+import static de.dirkgasser.brauen.BrewComputerMain.buzzer;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.Locale;
@@ -40,23 +41,23 @@ public class TemperaturWatcher implements Runnable {
         for (int i=0;i<30;i++) {
             tempList[i] = 0;
         }
-        deltaTemp = 0d;
-        currentTemp = 0d;
+        deltaTemp.set(0); 
+        currentTemp.set(0);
     }
     
     @Override
     public void run() {
-        while (isAlive) { 
+        while (isAlive.get()) { 
             newTemp = tempSensor.getTemp();
-            if (newTemp < 120 && newTemp > -20) {
-                currentTemp = newTemp;
+            if (newTemp < 120 && newTemp > -20 && newTemp != 0) {
+                currentTemp.getAndSet((int)(100d * newTemp));
                 if (tempList[tempListPos] != 0) {
-                    if (newTemp < tempList[tempListPos]) {
-                        deltaTemp = (newTemp - tempList[tempListPos]) * 0.1;
+                    if (newTemp < getAvgTemp()) {
+                        deltaTemp.getAndSet((int)((newTemp - getAvgTemp()) * 10));
                     } else if (newTemp > 85) {
-                        deltaTemp = (newTemp - tempList[tempListPos]) * 0.2;
+                        deltaTemp.getAndSet((int)((newTemp - getAvgTemp()) * 50));
                     } else {
-                        deltaTemp = (newTemp - tempList[tempListPos]) * 0.6;
+                        deltaTemp.getAndSet((int)((newTemp - getAvgTemp()) * 100));
                     }
                 }    
                 tempList[tempListPos] = newTemp;
@@ -68,8 +69,8 @@ public class TemperaturWatcher implements Runnable {
             if (testFrame.isVisible()){
                 java.awt.EventQueue.invokeLater(new Runnable() {
                     public void run() {
-                    testFrame.getTempField().setText(numberFormat.format(currentTemp) + " °C");
-                    testFrame.getDeltaTempField().setText("+/- " + numberFormat.format(deltaTemp) + " °C");
+                    testFrame.getTempField().setText(numberFormat.format(currentTemp.get() / 100d) + " °C");
+                    testFrame.getDeltaTempField().setText("+/- " + numberFormat.format(deltaTemp.get() / 100d) + " °C");
                     }
                 });
             }
@@ -78,6 +79,22 @@ public class TemperaturWatcher implements Runnable {
             } catch (InterruptedException ex) {
                 Logger.getLogger(TemperaturWatcher.class.getName()).log(Level.SEVERE, null, ex);
             }
+        }
+    }
+    private double getAvgTemp() {
+        double sum = 0d;
+        Boolean hasChanged = false;
+        for (int i = 0; i < 30 ; i++) {
+            sum += tempList[i];
+            if (i < 29) {
+                if (tempList[i] != tempList[i + 1]) hasChanged = true;
+            }    
+        }
+        if (hasChanged) {
+           return sum / 30d;
+        } else {
+            buzzer.beep();
+            return 0d;
         }
     }
     

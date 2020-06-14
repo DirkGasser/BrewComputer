@@ -68,6 +68,7 @@ public class JPIngredients extends javax.swing.JPanel {
             jtAmount[step].addKeyListener(new IngredientKeyListner(jtAmount[step], step, "Amount", brewRecipe));
             jtIngredDescription[step] = new JTextField();
             jtIngredDescription[step].setText(ingredient.getDescripton());
+            jtIngredDescription[step].setPreferredSize(new java.awt.Dimension(80, 30));
             jtIngredDescription[step].addKeyListener(new IngredientKeyListner(jtIngredDescription[step], step, "Description", brewRecipe));
             jtPropertyValue[step] = new JTextField();
             jtPropertyValue[step].setText(ingredient.getPropertyValueF());
@@ -84,20 +85,20 @@ public class JPIngredients extends javax.swing.JPanel {
                   
             parallelGroup.addGroup(jpIngredLayout.createSequentialGroup()
                 .addComponent(jcIngredType[step], GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
-                .addGap(4, 4, 4)
+                .addGap(3, 3, 3)
   //              .addComponent(jtIngredDescription[step], GroupLayout.PREFERRED_SIZE, 158, GroupLayout.PREFERRED_SIZE)
                 .addComponent(jtIngredDescription[step], GroupLayout.PREFERRED_SIZE, 120, GroupLayout.PREFERRED_SIZE)
-                .addGap(4, 4, 4)
+                .addGap(3, 3, 3)
                 .addComponent(jtAmount[step], GroupLayout.PREFERRED_SIZE, 45, GroupLayout.PREFERRED_SIZE)
-                .addGap(4, 4,4)
+                .addGap(3, 3,3)
                 .addComponent(jtUnit[step], GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
-                 .addGap(4, 4,4)
+                 .addGap(3, 3,3)
                 .addComponent(jcProperty[step], GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                 .addGap(4, 4,4)
+                 .addGap(3, 3,3)
                 .addComponent(jtPropertyValue[step], GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
-                .addGap(8, 8, 8)
+                .addGap(7, 7, 7)
                 .addComponent(jcStepconnect[step], GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                 .addGap(4, 4,4)
+                 .addGap(3, 3,3)
                 .addComponent(jbDeleteIngred[step]));
             step = step + 1;
         }

@@ -351,7 +351,6 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="jbConfirm" pref="120" max="32767" attributes="0"/>
                       <Component id="jtbPump" max="32767" attributes="0"/>
-                      <Component id="jtbPumpBack" max="32767" attributes="0"/>
                       <Component id="jtbHeater" max="32767" attributes="0"/>
                       <Component id="jtbStartStop" max="32767" attributes="0"/>
                       <Group type="102" attributes="0">
@@ -366,20 +365,18 @@
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <Component id="jtbStartStop" min="-2" pref="47" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jtbPump" min="-2" pref="43" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="jbPMinus" pref="37" max="32767" attributes="0"/>
-                      <Component id="jbPPlus" max="32767" attributes="0"/>
-                  </Group>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jtbPumpBack" min="-2" pref="43" max="-2" attributes="0"/>
+                  <Component id="jtbStartStop" min="-2" pref="53" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
-                  <Component id="jtbHeater" min="-2" pref="41" max="-2" attributes="0"/>
+                  <Component id="jtbPump" min="-2" pref="52" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="jbPMinus" max="32767" attributes="0"/>
+                      <Component id="jbPPlus" min="-2" pref="37" max="-2" attributes="0"/>
+                  </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="jbConfirm" min="-2" pref="84" max="-2" attributes="0"/>
+                  <Component id="jtbHeater" min="-2" pref="47" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                  <Component id="jbConfirm" min="-2" pref="100" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
@@ -412,15 +409,6 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jtbHeaterActionPerformed"/>
-          </Events>
-        </Component>
-        <Component class="javax.swing.JToggleButton" name="jtbPumpBack">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="&lt;html&gt;Pumpe &lt;br&gt;zur&#xfc;ck&lt;/html&gt;"/>
-            <Property name="actionCommand" type="java.lang.String" value="Pumpe"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jtbPumpBackActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jbConfirm">

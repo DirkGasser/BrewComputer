@@ -7,6 +7,8 @@ import java.io.IOException;
 import de.dirkgasser.brauen.BrewComputerFrame;
 import de.dirkgasser.brauen.TestFrame;
 import de.dirkgasser.brauen.RecipeFrame;
+import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.atomic.AtomicInteger;
 
 
 /**
@@ -26,9 +28,9 @@ public class BrewComputerMain {
     public static TemperaturSensor temperaturSensor;
     public static Heater heater;
     public static Buzzer buzzer;
-    public static Double currentTemp;
-    public static Double deltaTemp;
-    public static boolean isAlive;
+    public static AtomicInteger currentTemp = new AtomicInteger(0);
+    public static AtomicInteger deltaTemp= new AtomicInteger(0);
+    public static AtomicBoolean isAlive= new AtomicBoolean(true);
     private static double width;
     private static double height;
     
@@ -58,7 +60,7 @@ public class BrewComputerMain {
         //</editor-fold>
 
         /* Create and display the form */
-        isAlive = true;
+        isAlive.set(true); 
         gpio = GpioFactory.getInstance();  
         pump = new Pump(31, 15, 16, gpio);
         temperaturSensor = new TemperaturSensor();

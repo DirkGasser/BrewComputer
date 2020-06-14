@@ -216,6 +216,7 @@ public class RecipeFrame extends javax.swing.JFrame {
         jtSchritt.setEditable(false);
 
         jtBezeichnung.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        jtBezeichnung.setPreferredSize(new java.awt.Dimension(4, 25));
 
         jcbStart.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "manuell", "automatisch" }));
 
@@ -386,7 +387,7 @@ public class RecipeFrame extends javax.swing.JFrame {
                         .addComponent(lbMin2)
                         .addComponent(jtTemperatur2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(lbCelsius2)))
-                .addContainerGap(67, Short.MAX_VALUE))
+                .addContainerGap(63, Short.MAX_VALUE))
         );
 
         bDeletebs.getAccessibleContext().setAccessibleName("delete");

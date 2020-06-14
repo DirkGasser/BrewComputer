@@ -86,7 +86,7 @@ public class BrewProcess implements Runnable {
                 oldState = currentState;
                 totalSec = Duration.between(startTime, Instant.now()).getSeconds();
                 brewframe.setTimeAll(totalSec.intValue());
-                brewframe.setTempIs(currentTemp);
+                brewframe.setTempIs((double)(currentTemp.get() / 100d));
 
                 if (currentState.equals(1)) {
                     checkStartConditions();
@@ -104,7 +104,7 @@ public class BrewProcess implements Runnable {
                     }
                 }
                 if (currentState.equals(3)) {
-                    if (currentTemp + deltaTemp > brewRecipe.getBrewStepbyPosition(currentStep).getTemperatur() + deltaTargetTemp) {
+                    if ((currentTemp.get() + deltaTemp.get()) / 100d > brewRecipe.getBrewStepbyPosition(currentStep).getTemperatur() + deltaTargetTemp) {
                         synchronized(this) {
                             currentState = 4;
                             startOfStep = Instant.now();
@@ -128,11 +128,11 @@ public class BrewProcess implements Runnable {
                         }
                     } else {
                         if (heater.isOn() && 
-                            currentTemp + deltaTemp > brewRecipe.getBrewStepbyPosition(currentStep).getTemperatur() + deltaTargetTemp) {
+                            (currentTemp.get() + deltaTemp.get()) / 100d > brewRecipe.getBrewStepbyPosition(currentStep).getTemperatur() + deltaTargetTemp) {
                             lastTempCheck = Instant.now();
                             brewframe.setHeater("OFF");
                         } else if (!heater.isOn() &&
-                                   currentTemp + deltaTemp < brewRecipe.getBrewStepbyPosition(currentStep).getTemperatur() + deltaTargetTemp) {
+                                   (currentTemp.get() + deltaTemp.get()) / 100d  < brewRecipe.getBrewStepbyPosition(currentStep).getTemperatur() + deltaTargetTemp) {
                             synchronized(this) {
                                 brewframe.setHeater("ON");
                                 if (brewRecipe.getBrewStepbyPosition(currentStep).getTemperatur() < 80) {
@@ -312,7 +312,7 @@ public class BrewProcess implements Runnable {
         stepOffsetSec = 0L;
         currentState = 1;
         
-         while (!currentState.equals(5) && isAlive) {
+         while (!currentState.equals(5) && isAlive.get()) {
             if (!invoked) {
                 java.awt.EventQueue.invokeLater(this);
                 invoked = true;

@@ -5,6 +5,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
+import java.util.logging.Level;
 /**
  * Reads the temperature from a DS18B20 sensor.<br>
  * DS18B20 connections: <br>
@@ -88,11 +90,13 @@ public class TemperaturSensor {
                    for(String line: lines) {
                        if (line.endsWith("YES")) {
                           crcOK = true;
-                        } else if (line.matches(".*t=[0-9-]+") && crcOK) 
-                        return Integer.valueOf(line.substring(line.indexOf("=")+1))/1000.0;
+                        } else if (line.matches(".*t=[0-9-]+") && crcOK) {
+                            Double temp = Integer.valueOf(line.substring(line.indexOf("=")+1))/1000.0;
+                            if (temp.equals(85d)) return 0; else return temp;
+                        }
                     }
                 } catch (Exception e) {
-                   e.printStackTrace();
+                   Logger.getLogger(TemperaturSensor.class.getName()).log(Level.SEVERE, null, e);
                 }
                 attempts--;
             }
