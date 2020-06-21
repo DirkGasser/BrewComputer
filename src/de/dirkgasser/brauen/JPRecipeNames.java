@@ -26,7 +26,7 @@ public class JPRecipeNames extends javax.swing.JPanel {
         recipeNames = RecipeNames.getRecipesFromFolder();
         JButton[] jbRecipeName = new JButton[recipeNames.getNumberOfRecipes() + 1];
         
-        high = 45 + 35 * recipeNames.getAllNames().size();
+        high = 45 + 40 * recipeNames.getAllNames().size();
         this.setMinimumSize(new java.awt.Dimension(10, 200));
         this.setPreferredSize(new java.awt.Dimension(50, high));
         
@@ -36,8 +36,9 @@ public class JPRecipeNames extends javax.swing.JPanel {
         
         for (String name : recipeNames.getAllNames()) {
             jbRecipeName[step] = new JButton();
-            jbRecipeName[step].setText(name.substring(0, min(15,name.length())));
+            jbRecipeName[step].setText(name.substring(0, min(105,name.length())));
             jbRecipeName[step].setName(name);
+            jbRecipeName[step].setSize(105, 35);
             jbRecipeName[step].addActionListener(new RecipeNameButtonListner(jbRecipeName[step]));
             parallelGroup.addComponent(jbRecipeName[step]);
             step++;
