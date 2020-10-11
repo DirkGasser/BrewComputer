@@ -8,8 +8,6 @@ import static de.dirkgasser.brauen.BrewComputerMain.buzzer;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.Locale;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JTextField;
 import static de.dirkgasser.brauen.BrewComputerMain.testFrame;
 
@@ -55,9 +53,9 @@ public class TemperaturWatcher implements Runnable {
                     if (newTemp < getAvgTemp()) {
                         deltaTemp.getAndSet((int)((newTemp - getAvgTemp()) * 10));
                     } else if (newTemp > 85) {
-                        deltaTemp.getAndSet((int)((newTemp - getAvgTemp()) * 50));
+                        deltaTemp.getAndSet((int)((newTemp - getAvgTemp()) * 80));
                     } else {
-                        deltaTemp.getAndSet((int)((newTemp - getAvgTemp()) * 100));
+                        deltaTemp.getAndSet((int)((newTemp - getAvgTemp()) * 150));
                     }
                 }    
                 tempList[tempListPos] = newTemp;
@@ -77,7 +75,7 @@ public class TemperaturWatcher implements Runnable {
             try {
                 Thread.sleep(4000);
             } catch (InterruptedException ex) {
-                Logger.getLogger(TemperaturWatcher.class.getName()).log(Level.SEVERE, null, ex);
+                ;
             }
         }
     }

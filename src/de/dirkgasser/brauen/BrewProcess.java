@@ -7,8 +7,6 @@ package de.dirkgasser.brauen;
 
 import java.time.Duration;
 import java.time.Instant;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import static de.dirkgasser.brauen.BrewComputerMain.brewframe;
 import static de.dirkgasser.brauen.BrewComputerMain.buzzer;
 import static de.dirkgasser.brauen.BrewComputerMain.currentTemp;
@@ -320,7 +318,7 @@ public class BrewProcess implements Runnable {
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException ex) {
-                Logger.getLogger(BrewProcess.class.getName()).log(Level.SEVERE, null, ex);
+                ;
             }
          }
          java.awt.EventQueue.invokeLater(this); //to stop heater and pump

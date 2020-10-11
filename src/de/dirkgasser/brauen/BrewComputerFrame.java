@@ -152,6 +152,7 @@ public class BrewComputerFrame extends javax.swing.JFrame {
         jtTempIs.setFocusable(false);
         jtTempIs.setRequestFocusEnabled(false);
 
+        jButton1.setBackground(new java.awt.Color(255, 204, 204));
         jButton1.setText("+");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -159,6 +160,7 @@ public class BrewComputerFrame extends javax.swing.JFrame {
             }
         });
 
+        jButton2.setBackground(new java.awt.Color(204, 255, 255));
         jButton2.setText("-");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -248,6 +250,7 @@ public class BrewComputerFrame extends javax.swing.JFrame {
                         .addComponent(jtTimeAll, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))))
         );
 
+        jtbStartStop.setBackground(new java.awt.Color(204, 204, 255));
         jtbStartStop.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jtbStartStop.setText("Start");
         jtbStartStop.addActionListener(new java.awt.event.ActionListener() {
@@ -388,6 +391,7 @@ public class BrewComputerFrame extends javax.swing.JFrame {
 
         jpCurrentStep.add(jPanel1, "card2");
 
+        jbBack.setBackground(new java.awt.Color(153, 204, 255));
         jbBack.setText("zurück");
         jbBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -395,6 +399,7 @@ public class BrewComputerFrame extends javax.swing.JFrame {
             }
         });
 
+        jbMinus.setBackground(new java.awt.Color(153, 204, 255));
         jbMinus.setText("- 1 Min.");
         jbMinus.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -402,6 +407,7 @@ public class BrewComputerFrame extends javax.swing.JFrame {
             }
         });
 
+        jbPlus.setBackground(new java.awt.Color(102, 204, 255));
         jbPlus.setText("+ 1 Min");
         jbPlus.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -409,6 +415,7 @@ public class BrewComputerFrame extends javax.swing.JFrame {
             }
         });
 
+        jbNext.setBackground(new java.awt.Color(102, 204, 255));
         jbNext.setText("weiter");
         jbNext.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -416,6 +423,7 @@ public class BrewComputerFrame extends javax.swing.JFrame {
             }
         });
 
+        jtbPause.setBackground(new java.awt.Color(255, 142, 3));
         jtbPause.setText("Pause");
         jtbPause.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -464,8 +472,9 @@ public class BrewComputerFrame extends javax.swing.JFrame {
 
         jpNextStep.add(jPanel2, "card2");
 
+        jMenuBar1.setBackground(new java.awt.Color(204, 255, 204));
         jMenuBar1.setFocusable(false);
-        jMenuBar1.setPreferredSize(new java.awt.Dimension(216, 40));
+        jMenuBar1.setPreferredSize(new java.awt.Dimension(216, 38));
         jMenuBar1.setRequestFocusEnabled(false);
 
         jRecipe.setText("Rezept");
@@ -537,7 +546,7 @@ public class BrewComputerFrame extends javax.swing.JFrame {
                             .addComponent(jpPrevStep, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jpTimeLine, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(31, Short.MAX_VALUE))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
 
         pack();
@@ -647,7 +656,7 @@ public class BrewComputerFrame extends javax.swing.JFrame {
 
     private void jbPMinusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbPMinusActionPerformed
         // TODO add your handling code here:
-        pump.decreaseRate(1);
+        pump.decreaseRate(10);
         if (pump.isOn()) {
             jtbPump.setText("<html>" + pump.getRate() + "%<br> Pumpe aus</html>");
         }
@@ -655,7 +664,7 @@ public class BrewComputerFrame extends javax.swing.JFrame {
 
     private void jbPPlusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbPPlusActionPerformed
         // TODO add your handling code here:
-        pump.increaseRate(1);
+        pump.increaseRate(10);
         if (pump.isOn()) {
             jtbPump.setText("<html>" + pump.getRate() + "%<br> Pumpe aus</html>");
         }

@@ -24,7 +24,7 @@ public class BrewComputerMain {
     public static TestFrame testFrame;
     public static BrewRecipe brewRecipe;
     public static GpioController gpio;
-    public static Pump pump; 
+    public static PumpNew pump; 
     public static TemperaturSensor temperaturSensor;
     public static Heater heater;
     public static Buzzer buzzer;
@@ -62,7 +62,7 @@ public class BrewComputerMain {
         /* Create and display the form */
         isAlive.set(true); 
         gpio = GpioFactory.getInstance();  
-        pump = new Pump(31, 15, 16, gpio);
+        pump = new PumpNew(31, 15, 16, gpio);
         temperaturSensor = new TemperaturSensor();
         heater = new Heater(23);  // original layout 29
         buzzer = new Buzzer(29, gpio); // origional layout 23
@@ -77,6 +77,8 @@ public class BrewComputerMain {
        
        Thread thTemp = new Thread(new TemperaturWatcher(temperaturSensor));
        thTemp.start();
+       Thread thPump = new Thread(pump);
+       thPump.start();
        java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 recipeframe.setVisible(true);
